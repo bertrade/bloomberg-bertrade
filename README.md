@@ -11,6 +11,10 @@ virtualenv venv
 ./venv/bin/python bloomberg.py
 ```
 
-Example for Mexican Stock Exchange (only two stocks):
+Example for Mexican Stock Exchange from ticker list:
 
 `./venv/bin/python bloomberg.py "ALSEA*:MM" "AC*:MM"`
+
+Example for Mexican Stock Exchange from text file:
+
+``./venv/bin/python bloomberg.py -f stock_list_bmv.txt`
