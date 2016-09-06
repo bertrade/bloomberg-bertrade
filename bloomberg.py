@@ -26,16 +26,14 @@ def _generate_bloomberg_json(tickers=[], filename=None, export_skipped=False):
             wr.stop()
             print 'WARNING: Skipping {}, {}.'.format(ticker, 'not found')
             continue
-        if wr.is_text_on_page('has changed'):
+        # was acquired by
+        # Ticker Change still gives back info so ignoring that
+        if wr.is_text_on_page('Ticker Delisted'):
             skipped_tickers.append(ticker)
             wr.stop()
-            print 'WARNING: Skipping {}, {}.'.format(ticker, 'ticker has changed')
+            print 'WARNING: Skipping {}, {}.'.format(ticker, 'ticker has been delisted')
             continue
-        if wr.is_text_on_page('no data available'):
-            skipped_tickers.append(ticker)
-            wr.stop()
-            print 'WARNING: Skipping {}, {}.'.format(ticker, 'ticker exists but no data available')
-            continue
+
         # Ticker found, get HTML scrape that sh*it
         html = wr.get_page_source()
         scraped_ticker = _scrape_ticker(html)
@@ -70,9 +68,12 @@ def _scrape_ticker(html):
     for board_member in soup.find_all('span', class_='management__name'):
         board_members.append(board_member.text.strip())
 
+    # Calculated stuff like industries combined with sub industries
+    industries = [sector, industry, sub_industry]
+
     scraped = {'ticker': ticker, 'market': market, 'name': name, 'sector': sector,
                'industry': industry, 'sub_industry': sub_industry, 'profile': profile,
-               'board_members': board_members}
+               'board_members': board_members, 'industries': industries}
 
     print 'Scraped: ' + str(scraped)
     return scraped
