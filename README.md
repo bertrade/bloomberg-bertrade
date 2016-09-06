@@ -1,4 +1,4 @@
-# bloomberg scraper
+# bloombergo
 
 Scrapes Bloomberg and generates a JSON file with general information based on a list of tickers or text file.
 
@@ -60,22 +60,6 @@ Will generate a JSON file under `/tmp` like this one:
       "Lorenzo Dominique Berho Carranza",
       "Alejandro Ituarte Egea",
       "Alejandro Pucheu Romero"
-    ]
-  },
-  {
-    "sector": "Consumer Discretionary",
-    "profile": "Grupo Gigante SAB de CV owns and operates retail chain stores.  The Company operates supermarkets and discount stores, restaurants,  membership clubs, office supply stores, and electronics stores.  The stores are located throughout Mexico.",
-    "name": "Grupo Gigante SAB de CV",
-    "industry": "Retail - Discretionary",
-    "sub_industry": "Other Spec Retail - Discr",
-    "ticker": "GIGANTE*:MM",
-    "market": "Mexico",
-    "board_members": [
-      "Angel Losada Moreno",
-      "Arturo Cabrera Valladares",
-      "Jaime Alverde Losada",
-      "Sergio Montero Querejeta",
-      "Angel Alverde Losada"
     ]
   }
 ]
