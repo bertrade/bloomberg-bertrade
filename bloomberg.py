@@ -36,7 +36,13 @@ def _generate_bloomberg_json(tickers=[], filename=None, export_skipped=False):
 
         # Ticker found, get HTML scrape that sh*it
         html = wr.get_page_source()
-        scraped_ticker = _scrape_ticker(html)
+        try:
+            scraped_ticker = _scrape_ticker(html)
+        except IndexError as error:
+            skipped_tickers.append(ticker)
+            wr.stop()
+            print 'WARNING: Skipping {}, {}.'.format(ticker, str(error))
+            continue
         if scraped_ticker:
             scraped_tickers.append(scraped_ticker)
         wr.stop()
