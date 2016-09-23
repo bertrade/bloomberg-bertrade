@@ -1,2 +1,2 @@
-PyWebRunner==1.7.5
+PyWebRunner==1.8.8
 beautifulsoup4==4.4.0
